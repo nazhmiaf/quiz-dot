@@ -43,8 +43,13 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  const getUser = () => {
+  const user = localStorage.getItem("quizUser");
+  return user ? JSON.parse(user) : null;
+};
+
   return (
-    <AuthContext.Provider value={{ user, register, login, logout }}>
+    <AuthContext.Provider value={{ user, register, login, logout, getUser }}>
       {children}
     </AuthContext.Provider>
   );

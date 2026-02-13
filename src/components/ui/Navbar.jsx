@@ -11,23 +11,27 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useAuth } from "../../context/AuthContext"
 import PersonIcon from '@mui/icons-material/Person';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Navbar = () => {
   const {user, logout} = useAuth()
   return (
-    <nav className="fixed flex w-full justify-between items-center h-14 p-5 border-b bg-background">
+    <div className="fixed w-full">
+
+    <nav className=" flex w-full justify-between items-center h-14 p-5 border-b bg-background">
       <Link to="#" className="text-3xl text-primary font-extrabold">Quiz<span className="text-accent">Dot</span></Link>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant='ghost' className="mr-10 hover:bg-secondary text-md">
+          <button  className="mr-10 hover:bg-secondary p-2 rounded-lg transition-all cursor-pointer text-md">
             <PersonIcon className="mr-2 text-black"/> {user?.username}
-          </Button>
+          </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56" align="end" sideOffset={8}>
-          <DropdownMenuItem variant="ghost" className='' onClick={logout}>Logout</DropdownMenuItem>
+          <DropdownMenuItem variant="ghost" className='hover:bg-background transition-all text-destructive' onClick={logout}><LogoutIcon className="text-destructive mr-2"/>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </nav>
+    </div>
   )
 }
 
